@@ -1,3 +1,5 @@
+package gb.lesson2.wrong;
+
 import java.util.Scanner;
 
 public class CalcApplication {
