@@ -1,9 +1,23 @@
 package gb.lesson2.wrong;
 
 import java.util.Random;
-
+/**
+ * 1. Напишите метод, на вход которого подается двумерный строковый массив размером 4х4,
+ * при подаче массива другого размера необходимо бросить исключение MyArraySizeException.
+ *
+ * 2. Далее метод должен пройтись по всем элементам массива, преобразовать в int, и просуммировать.
+ * Если в каком-то элементе массива преобразование не удалось (например, в ячейке лежит символ или текст вместо числа),
+ * должно быть брошено исключение MyArrayDataException – с детализацией, в какой именно ячейке лежат неверные данные.
+ *
+ * 3. В методе main() вызвать полученный метод, обработать возможные исключения MySizeArrayException и MyArrayDataException и вывести результат расчета.
+ *
+ * Несколько комментариев.
+ * 1. Для всех упомянутые в тексте задания исключений вам нужно будет самим создать классы
+ * 2. Предлагаю сделать их checked, чтобы лучше разобраться с этой особенностью языка
+ * 3. Для этого задания я не даю основы, как для прошлого.
+ */
 public class TestArray {
-    public static void main (String[] args) {
+    public static void main (String[] args) throws MyArrayDataException, MyArraySizeException  {
         try {
             int[][] arr = new int[4][4];
             int max, min;
@@ -18,14 +32,18 @@ public class TestArray {
                     System.out.print(arr[i][j] + " ");
                 }
             }
-        }catch (ArrayIndexOutOfBoundsException ex) {
+            //summ
+            int summMass;
+                int x=arr.length;
+                int summ=0;
+                for (int i=0;i<x;i++){
+                    for(int j=0;j<x;j++){
+                        summ+=arr[i][j];
+                    }
+                }
+                System.out.println("Общая сумма всех элементова массива равна: "+summ);
+        }catch (ArrayIndexOutOfBoundsException| MyArraySizeException |MyArrayDataException ex) {
             System.out.println("Ошибка " + ex);
-       /* }catch (MyArraySizeException ex) {
-            System.out.println("Ошибка " + ex);
-        }catch (MyArrayDataException  ex) {
-            System.out.println("Ошибка " + ex);
-        }catch (MySizeArrayException   ex) {
-          System.out.println("Ошибка " + ex);*/
         }
     }
 }
